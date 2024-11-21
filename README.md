@@ -1,4 +1,4 @@
-# UserRoleTransferTool
+# User Role Transfer Tool
 Effortlessly transfer roles between users or teams.
 
 Read more: https://www.poweruser365.com/en
