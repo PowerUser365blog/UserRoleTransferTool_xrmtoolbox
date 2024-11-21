@@ -5,7 +5,8 @@ Read more: https://www.poweruser365.com/en
 
 ### Scope:
 - Dynamics CRM
-- Power Apps (Model Driven)
+- Power Apps
+- Dataverse
 
 ### What this tool offers:
 - Easily transfer users roles or teams.
