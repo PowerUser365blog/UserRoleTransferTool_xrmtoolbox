@@ -100,6 +100,7 @@
             this.tsbAdd.Size = new System.Drawing.Size(101, 28);
             this.tsbAdd.Text = "Add roles";
             this.tsbAdd.ToolTipText = "Adds the source user\'s roles to the roles that the target user already has";
+            this.tsbAdd.Enabled = false;
             this.tsbAdd.Click += new System.EventHandler(this.tsbAdd_Click);
             // 
             // tsbTransfer
@@ -111,6 +112,7 @@
             this.tsbTransfer.Text = "Transfer roles";
             this.tsbTransfer.ToolTipText = "Equalize the roles of the source and destination user";
             this.tsbTransfer.Click += new System.EventHandler(this.tsbTransfer_Click);
+            this.tsbTransfer.Enabled = false;
             // 
             // toolStripSeparator2
             // 
@@ -128,7 +130,7 @@
             // 
             // gbSourceUser
             // 
-            this.gbSourceUser.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.gbSourceUser.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
             | System.Windows.Forms.AnchorStyles.Left)));
             this.gbSourceUser.Controls.Add(this.lbSearch1);
             this.gbSourceUser.Controls.Add(this.txtUserTeamFilter);
@@ -159,7 +161,7 @@
             // 
             // lvSourceUser
             // 
-            this.lvSourceUser.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.lvSourceUser.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
             | System.Windows.Forms.AnchorStyles.Left)));
             this.lvSourceUser.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.displayName,
@@ -194,7 +196,7 @@
             // 
             // gbRoles
             // 
-            this.gbRoles.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.gbRoles.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
             | System.Windows.Forms.AnchorStyles.Left)));
             this.gbRoles.Controls.Add(this.label1);
             this.gbRoles.Controls.Add(this.txtRoleFilter);
@@ -225,7 +227,7 @@
             // 
             // lvRolesSource
             // 
-            this.lvRolesSource.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.lvRolesSource.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
             | System.Windows.Forms.AnchorStyles.Left)));
             this.lvRolesSource.CheckBoxes = true;
             this.lvRolesSource.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
@@ -248,7 +250,7 @@
             // 
             // gbDestinationUser
             // 
-            this.gbDestinationUser.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.gbDestinationUser.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
             | System.Windows.Forms.AnchorStyles.Left)));
             this.gbDestinationUser.Controls.Add(this.label2);
             this.gbDestinationUser.Controls.Add(this.txtUserTeamFilter2);
@@ -279,7 +281,7 @@
             // 
             // lvDestinationUser
             // 
-            this.lvDestinationUser.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.lvDestinationUser.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
             | System.Windows.Forms.AnchorStyles.Left)));
             this.lvDestinationUser.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.displayName2,

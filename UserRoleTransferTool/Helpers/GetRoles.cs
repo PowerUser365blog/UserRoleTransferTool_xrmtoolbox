@@ -3,6 +3,7 @@ using Microsoft.Xrm.Sdk.Query;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 
 namespace UserRoleTransferTool.Helpers
 {
@@ -17,13 +18,21 @@ namespace UserRoleTransferTool.Helpers
                 worker.ReportProgress(0, "Retrieve roles " + entityLogicalName);
             }
 
-            var rolesList = service.RetrieveMultiple(new QueryExpression("role")
-            {
-                ColumnSet = new ColumnSet("roleid", "name"),
-            });
+            string fetchXml = @"<fetch>
+                                  <entity name='role'>
+                                    <attribute name='roleid' />
+                                    <attribute name='name' />
+                                    <attribute name='businessunitid' />
+                                  </entity>
+                                </fetch>";
 
-            roles.AddRange(rolesList.Entities);
-            return roles;
+            EntityCollection rolesCollection = service.RetrieveMultiple(new FetchExpression(fetchXml));
+            List<Entity> uniqueRoles = rolesCollection.Entities
+                                        .GroupBy(role => role.GetAttributeValue<string>("name"))
+                                        .Select(g => g.First())
+                                        .ToList();
+
+            return uniqueRoles;
         }
 
         public List<Entity> RetrieveRolesByUser(IOrganizationService service, string entityLogicalName, Guid userid, BackgroundWorker worker = null)

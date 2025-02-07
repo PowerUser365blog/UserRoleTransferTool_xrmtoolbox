@@ -71,8 +71,8 @@ namespace UserRoleTransferTool
                     var teams = new GetSystemUsers().RetrieveTeams(Service, worker);
 
                     users.AddRange(teams);
-                    
-                    var roles = new GetRoles().RetrieveRoles(Service,"role", worker);
+
+                    var roles = new GetRoles().RetrieveRoles(Service, "role", worker);
                     var result = new
                     {
                         users,
@@ -184,7 +184,7 @@ namespace UserRoleTransferTool
                                 {
                                     item.Checked = true;
                                 }
-                                
+
                             }
                         }
                     }
@@ -249,13 +249,14 @@ namespace UserRoleTransferTool
 
         private void lvSourceUser_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+
             if (lvSourceUser.SelectedItems.Count > 0)
             {
                 var selectedItem = lvSourceUser.SelectedItems[0];
                 var type = selectedItem.SubItems[2].Text;
                 var userId = (Guid)selectedItem.Tag;
-
+                tsbAdd.Enabled = true;
+                tsbTransfer.Enabled = true;
                 if (type.ToLower() == "user")
                 {
                     ExecuteMethod(() => GetRolesByUserTeam(userId, true));
@@ -265,7 +266,12 @@ namespace UserRoleTransferTool
                     ExecuteMethod(() => GetRolesByUserTeam(userId, false));
                 }
             }
-            
+            else
+            {
+                tsbAdd.Enabled = false;
+                tsbTransfer.Enabled = false;
+            }
+
         }
 
         private void txtRoleFilter_TextChanged(object sender, EventArgs e)
@@ -311,6 +317,14 @@ namespace UserRoleTransferTool
             // Agregar los elementos filtrados al ListView
             lvDestinationUser.Items.AddRange(filteredItems);
         }
+
+        private void lvDestinationUser_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Habilita el botón únicamente si se ha seleccionado al menos un elemento
+            tsbAdd.Enabled = lvDestinationUser.SelectedItems.Count > 0;
+        }
+
+
 
         private void tsbTransfer_Click(object sender, EventArgs e)
         {
@@ -369,10 +383,10 @@ namespace UserRoleTransferTool
 
                             List<Guid> newRoleIds = selected.Except(roleIds).ToList();
 
-                           
-                            addRoles(newRoleIds, userid, type.ToLower()=="user");
-                            
-                            
+
+                            addRoles(newRoleIds, userid, type.ToLower() == "user");
+
+
 
                             List<Guid> rolesToRemove = roleIds.Except(selected).ToList();
 
@@ -399,7 +413,7 @@ namespace UserRoleTransferTool
                 .Select(item => (Guid)item.Tag)
                 .ToList();
 
-            if (selected.Count ==0)
+            if (selected.Count == 0)
             {
                 MessageBox.Show("You must select at least one role to add to the user/team", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -422,7 +436,7 @@ namespace UserRoleTransferTool
                         {
                             roles = new GetRoles().RetrieveRolesByTeam(Service, "role", userid, worker);
                         }
-                       
+
                         var result = new
                         {
                             roles
@@ -457,7 +471,7 @@ namespace UserRoleTransferTool
             MessageBox.Show("Roles added successfully", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        private void addRoles(List<Guid>roles, Guid userTeamId, bool isuser)
+        private void addRoles(List<Guid> roles, Guid userTeamId, bool isuser)
         {
             foreach (Guid id in roles)
             {
@@ -530,7 +544,7 @@ namespace UserRoleTransferTool
                 Service.Execute(disassociateRequest);
             }
 
-           
+
         }
 
         private void tsbForceSyncUser_Click(object sender, EventArgs e)
